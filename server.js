@@ -1,8 +1,14 @@
 import express from 'express';
+import cors from 'cors';
 import { getAllPosts } from './services/github.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Enable CORS
+app.use(cors({
+  origin: 'http://localhost:5173' 
+}));
 
 app.get('/api/posts', async (req, res) => {
   try {
