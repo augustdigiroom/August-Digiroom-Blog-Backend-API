@@ -1,17 +1,28 @@
 import axios from 'axios';
+import dotenv from 'dotenv';
 import { parseMarkdownFromUrl } from '../utils/markdown.js';
+
+dotenv.config();
 
 const REPO = 'augustdigiroom/August-Digiroom-Blog-Posts';
 const BASE_API = `https://api.github.com/repos/${REPO}/contents/posts`;
 const RAW_BASE = `https://raw.githubusercontent.com/${REPO}/main/posts`;
 
+// Add headers with GitHub token
+const githubHeaders = {
+  headers: {
+    Authorization: `token ${process.env.GITHUB_TOKEN}`,
+    Accept: 'application/vnd.github.v3+json',
+  },
+};
+
 async function fetchGitHubDir(url) {
-  const res = await axios.get(url);
+  const res = await axios.get(url, githubHeaders);
   return res.data.filter(item => item.type === 'dir');
 }
 
 async function fetchGitHubFiles(url) {
-  const res = await axios.get(url);
+  const res = await axios.get(url, githubHeaders);
   return res.data.filter(item => item.type === 'file' && item.name.endsWith('.md'));
 }
 
