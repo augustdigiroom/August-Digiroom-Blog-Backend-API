@@ -4,6 +4,8 @@ import { parseMarkdownFromUrl } from '../utils/markdown.js';
 
 dotenv.config();
 
+console.log('🔐 GitHub Token loaded (first 5 chars):', process.env.GITHUB_TOKEN?.slice(0, 5));
+
 const REPO = 'augustdigiroom/August-Digiroom-Blog-Posts';
 const BASE_API = `https://api.github.com/repos/${REPO}/contents/posts`;
 const RAW_BASE = `https://raw.githubusercontent.com/${REPO}/main/posts`;
