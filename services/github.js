@@ -9,8 +9,9 @@ console.log('🔐 GitHub Token loaded (first 5 chars):', process.env.GITHUB_TOKE
 const REPO = 'augustdigiroom/August-Digiroom-Blog-Posts';
 
 // ✅ Corrected to include the full folder path
-const BASE_API = `https://api.github.com/repos/${REPO}/contents/august%20digiroom%20posts/posts`;
-const RAW_BASE = `https://raw.githubusercontent.com/${REPO}/main/august%20digiroom%20posts/posts`;
+const BASE_API = `https://api.github.com/repos/${REPO}/contents/august-digiroom-post/posts`;
+const RAW_BASE = `https://raw.githubusercontent.com/${REPO}/master/august-digiroom-post/posts`;
+
 
 const githubHeaders = {
   headers: {
