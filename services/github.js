@@ -7,16 +7,18 @@ dotenv.config();
 console.log('🔐 GitHub Token loaded (first 5 chars):', process.env.GITHUB_TOKEN?.slice(0, 5));
 
 const REPO = 'augustdigiroom/August-Digiroom-Blog-Posts';
-const BASE_API = `https://api.github.com/repos/${REPO}/contents/posts`;
-const RAW_BASE = `https://raw.githubusercontent.com/${REPO}/main/posts`;
 
-// Add headers with GitHub token
+// ✅ Corrected to include the full folder path
+const BASE_API = `https://api.github.com/repos/${REPO}/contents/august%20digiroom%20posts/posts`;
+const RAW_BASE = `https://raw.githubusercontent.com/${REPO}/main/august%20digiroom%20posts/posts`;
+
 const githubHeaders = {
   headers: {
     Authorization: `token ${process.env.GITHUB_TOKEN}`,
     Accept: 'application/vnd.github.v3+json',
   },
 };
+
 
 async function fetchGitHubDir(url) {
   const res = await axios.get(url, githubHeaders);

@@ -21,7 +21,6 @@ npm start
 
 ### 🛠 Technologies Used
 
-- Express.js
-- gray-matter
-- remark + remark-html
+- React JS
+- Express JS
 - GitHub API
