@@ -25,6 +25,31 @@ app.get('/api/posts', async (req, res) => {
   }
 });
 
+app.get('/api/posts/:slug', async (req, res) => {
+  const { slug } = req.params;
+
+  try {
+    const posts = await getAllPosts();
+
+    // Flatten posts from {2025: {08: [ ... ]}}
+    const allPosts = Object.values(posts).flatMap(months =>
+      Object.values(months).flat()
+    );
+
+    const foundPost = allPosts.find(p => p.slug === slug);
+
+    if (!foundPost) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
+
+    res.json(foundPost);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to load post' });
+  }
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
