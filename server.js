@@ -5,10 +5,10 @@ import { getAllPosts } from './services/github.js';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// CORS for localhost only (for now)
 app.use(cors({
-  origin: 'http://localhost:5173'
+  origin: ['http://localhost:5173', 'https://augustinegrepo.vercel.app']
 }));
+
 
 // Add root route for Render health check
 app.get('/', (req, res) => {
